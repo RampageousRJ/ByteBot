@@ -16,7 +16,7 @@ semester_subject_short = {
 
 def resource_provision(payload):  
     subject = payload['queryResult']['parameters']['subjects'] 
-    semester = int(payload['queryResult']['outputContexts'][0]['parameters']['number'])
+    semester = int(payload['queryResult']['outputContexts'][0]['parameters']['semester'])
     if subject in semester_subject_short[semester]:
         if subject =='AP':
             return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampageousRJ/CCE-AP-Lab'}))
@@ -30,6 +30,10 @@ def resource_provision(payload):
             return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampagousRJ/CCE-OS-Lab'}))
         elif subject=='AL':
             return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampagousRJ/CCE-AL-Lab'}))
+        elif subject=='DS-L':
+            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampagousRJ/CCE-DS-Lab'}))
+        elif subject=='OOP-L':
+            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampagousRJ/CCE-OOP-Lab'}))
         elif subject=='EOM':
             return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedEOM"}))
         elif subject=='SDT':
@@ -40,14 +44,25 @@ def resource_provision(payload):
             return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedIS"}))
         elif subject=='DMPA':
             return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedDMPA"}))
+        elif subject=='CNP':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedCNP"}))
+        elif subject=='DAA':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedDAA"}))
+        elif subject=='EM4':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedEM4"}))
+        elif subject=='DBS':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedDBS"}))
+        elif subject=='OS':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedOS"}))
     else:
         return make_response(jsonify({'fulfillmentText':'Sorry! The resource does not exist for the given semester...'}))
     return make_response(jsonify({'fulfillmentText':'Sorry! The resource you are looking for is not available!'}))
 
 def subject_list(payload):
-    semester = int(payload['queryResult']['outputContexts'][0]['parameters']['number'])
+    semester = int(payload['queryResult']['outputContexts'][0]['parameters']['semester'])
+    print(semester)
     if semester in semester_subject.keys():
         subs = ', '.join(x for x in semester_subject[semester])
         print(subs)
-        return make_response(jsonify({'fulfillmentText':f'Subjects available are: {subs}'}))
+        return make_response(jsonify({'fulfillmentText':f'Subjects available for the SEMESTER {semester} are: {subs}'}))
     return make_response(jsonify({'fulfillmentText':'Sorry! The resources are not available for this semester!'}))
