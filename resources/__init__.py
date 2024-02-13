@@ -17,6 +17,7 @@ semester_subject_short = {
 def resource_provision(payload):  
     subject = payload['queryResult']['parameters']['subjects'] 
     semester = int(payload['queryResult']['outputContexts'][0]['parameters']['semester'])
+    subject = subject[0]
     if subject in semester_subject_short[semester]:
         if subject =='AP':
             return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampageousRJ/CCE-AP-Lab'}))
@@ -27,13 +28,17 @@ def resource_provision(payload):
         elif subject=='DBS-L':
             return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/PHOENIX00710/DBS-LAB_Codes-IT_CCE-MIT_Manipal'}))
         elif subject=='OS-L':
-            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampagousRJ/CCE-OS-Lab'}))
+            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampageousRJ/CCE-OS-Lab'}))
         elif subject=='AL':
-            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampagousRJ/CCE-AL-Lab'}))
+            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampageousRJ/CCE-AL-Lab'}))
         elif subject=='DS-L':
-            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampagousRJ/CCE-DS-Lab'}))
+            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampageousRJ/CCE-DS-Lab'}))
         elif subject=='OOP-L':
-            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampagousRJ/CCE-OOP-Lab'}))
+            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampageousRJ/CCE-OOP-Lab'}))
+        elif subject=='MAD':
+            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampageousRJ/CCE-MAD-Lab'}))
+        elif subject=='ESD-L':
+            return make_response(jsonify({'fulfillmentText':'Your desired resources can be found here! https://github.com/RampageousRJ/CCE-ESD-Lab'}))
         elif subject=='EOM':
             return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedEOM"}))
         elif subject=='SDT':
@@ -54,6 +59,16 @@ def resource_provision(payload):
             return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedDBS"}))
         elif subject=='OS':
             return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedOS"}))
+        elif subject=='DS':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedDS"}))
+        elif subject=='DSD':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedDSD"}))
+        elif subject=='EM3':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedEM3"}))
+        elif subject=='OOP':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedOOP"}))
+        elif subject=='PDC':
+            return make_response(jsonify({"fulfillmentText": "Your desired resources can be found here!   http://tinyurl.com/ZippedPDC"}))
     else:
         return make_response(jsonify({'fulfillmentText':'Sorry! The resource does not exist for the given semester...'}))
     return make_response(jsonify({'fulfillmentText':'Sorry! The resource you are looking for is not available!'}))
